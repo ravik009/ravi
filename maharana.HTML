@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💝 शुभकामना भेजक</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(-45deg, #ff4500, #ff6347, #ff8c00, #dc143c, #b22222);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            background: rgba(255, 165, 0, 0.95);
+            border-radius: 25px;
+            padding: 25px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 450px;
+            width: 100%;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 140, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff8c00, #ff7f50, #ff6347, #ff4500, #ffa500);
+            z-index: -1;
+            border-radius: 25px;
+        }
+        
+        .header {
+            margin-bottom: 25px;
+        }
+        
+        .gif-container {
+            margin-bottom: 20px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .gif-image {
+            width: 70%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .gif-container:hover .gif-image {
+            transform: scale(1.05);
+        }
+        
+        .gif-overlay {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 22px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        
+        .quick-templates {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+        
+        .template-btn {
+            padding: 6px 12px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+        }
+        
+        .template-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.5);
+        }
+        
+        .input-group {
+            margin-bottom: 18px;
+            text-align: left;
+        }
+        
+        .input-label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .emoji {
+            margin-right: 5px;
+            font-size: 16px;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+            position: relative;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 15px rgba(102, 126, 234, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .textarea-field {
+            height: 120px;
+            resize: vertical;
+            font-family: inherit;
+        }
+        
+        .char-counter {
+            text-align: right;
+            font-size: 12px;
+            color: #888;
+            margin-top: 5px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 120px;
+        }
+        
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+        }
+        
+        .btn-copy {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-clear {
+            background: linear-gradient(135deg, #ff7675, #fd79a8);
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 118, 117, 0.4);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .btn-icon {
+            margin-right: 6px;
+            font-size: 16px;
+        }
+        
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #25D366;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .toast.show {
+            transform: translateX(0);
+        }
+        
+        .floating-emojis {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        .floating-emoji {
+            position: absolute;
+            font-size: 20px;
+            animation: float 6s linear infinite;
+            opacity: 0;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+                margin: 5px;
+                border-radius: 20px;
+            }
+            
+            h1 {
+                font-size: 20px;
+            }
+            
+            .gif-image {
+                height: 180px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .quick-templates {
+                gap: 5px;
+            }
+            
+            .template-btn {
+                font-size: 11px;
+                padding: 5px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-emojis" id="floatingEmojis"></div>
+    
+    <div class="container">
+        <div class="header">
+            <div class="gif-container" onclick="changeGif()">
+                <img src="https://i.pinimg.com/736x/bb/8e/e7/bb8ee7bd5ec2959fd1645399649ec4a0.jpg" alt="शुभकामना GIF" class="gif-image" id="gifImage">
+                <div class="gif-overlay">🔄 Click to change</div>
+            </div>
+            
+            <h1>💝 शुभकामना भेजक</h1>
+            <p class="subtitle">अपनी खुशियां सबके साथ बांटें ✨</p>
+        </div>
+        
+        
+        
+        <div class="input-group">
+            <label class="input-label">
+                <span class="emoji">👤</span>
+                आपका नाम:
+            </label>
+            <input type="text" id="senderName" class="input-field" placeholder="अपना नाम यहाँ लिखें..." maxlength="50">
+        </div>
+        
+        <div class="input-group">
+            <label class="input-label">
+                <span class="emoji">💌</span>
+                आपकी शुभकामनाएं:
+            </label>
+            <textarea id="wishMessage" class="input-field textarea-field" placeholder="अपनी प्यारी शुभकामनाएं यहाँ लिखें..." maxlength="500">🌟 आपको और आपके परिवार को ढेर सारी खुशियां मिलें!
+🎊 जीवन में सफलता और समृद्धि आए!
+💫 हर दिन नई उमंग और नई खुशी लेकर आए!
+
+शुभकामनाओं सहित... ❤️</textarea>
+            <div class="char-counter" id="charCounter">0/500</div>
+        </div>
+        
+        <div class="action-buttons">
+            <button class="btn btn-whatsapp" onclick="sendToWhatsApp()">
+                <span class="btn-icon">📱</span>
+                WhatsApp भेजें
+            </button>
+            <button class="btn btn-copy" onclick="copyMessage()">
+                <span class="btn-icon">📋</span>
+                Copy करें
+            </button>
+            <button class="btn btn-clear" onclick="clearAll()">
+                <span class="btn-icon">🗑️</span>
+                Clear करें
+            </button>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        
+        // Message templates
+        const templates = {
+            birthday: `🎂 जन्मदिन मुबारक हो! 🎉
+आपका यह नया साल खुशियों से भरा हो!
+🎈 सभी सपने पूरे हों!
+🎁 ढेर सारा प्यार और आशीर्वाद!
+
+जन्मदिन की हार्दिक शुभकामनाएं! 🥳`,
+            
+            festival: `🪔 त्योहार की हार्दिक शुभकामनाएं! ✨
+🎊 आपके घर में खुशियों का त्योहार मनाया जाए!
+🌟 मां लक्ष्मी का आशीर्वाद आप पर बना रहे!
+🙏 सुख-समृद्धि और शांति मिले!
+
+शुभ त्योहार! 🎉`,
+            
+            newyear: `🎊 नए साल की शुभकामनाएं! 2024 🎆
+✨ नया साल आपके लिए नई खुशियां लेकर आए!
+🌟 सभी सपने साकार हों!
+💫 सफलता आपके कदम चूमे!
+🎉 स्वास्थ्य और खुशी बनी रहे!
+
+Happy New Year! 🥳`,
+            
+            success: `🏆 बधाई हो! आपकी सफलता पर! 🎉
+⭐ मेहनत का फल मिला!
+💪 आगे भी ऐसे ही तरक्की करते रहें!
+🌟 आपकी सफलता की कहानी प्रेरणादायक है!
+👏 गर्व है आप पर!
+
+सफलता की हार्दिक बधाई! 🎊`,
+            
+            general: `🌟 आपको ढेर सारी शुभकामनाएं! ✨
+💝 जीवन में खुशियां ही खुशियां हों!
+🌈 हर दिन एक नया उपहार लेकर आए!
+🙏 भगवान का आशीर्वाद हमेशा बना रहे!
+💫 प्यार और खुशी से भरा रहे जीवन!
+
+शुभकामनाओं सहित! ❤️`
+        };
+        
+        // Load template
+        function loadTemplate(type) {
+            document.getElementById('wishMessage').value = templates[type];
+            updateCharCounter();
+            showToast(`${type} template लोड हो गया! 📝`);
+            createFloatingEmojis();
+        }
+        
+        // Change GIF
+        function changeGif() {
+            currentGifIndex = (currentGifIndex + 1) % gifs.length;
+            document.getElementById('gifImage').src = gifs[currentGifIndex];
+            showToast('नई GIF लोड हो गई! 🎬');
+        }
+        
+        // Update character counter
+        function updateCharCounter() {
+            const message = document.getElementById('wishMessage').value;
+            const counter = document.getElementById('charCounter');
+            counter.textContent = `${message.length}/500`;
+            
+            if (message.length > 450) {
+                counter.style.color = '#ff7675';
+            } else if (message.length > 350) {
+                counter.style.color = '#fdcb6e';
+            } else {
+                counter.style.color = '#888';
+            }
+        }
+        
+        // Send to WhatsApp
+        function sendToWhatsApp() {
+            const senderName = document.getElementById('senderName').value.trim();
+            const wishMessage = document.getElementById('wishMessage').value.trim();
+            
+            if (!senderName) {
+                showToast('कृपया अपना नाम लिखें! 👤', 'error');
+                return;
+            }
+            
+            if (!wishMessage) {
+                showToast('कृपया अपनी शुभकामनाएं लिखें! 💌', 'error');
+                return;
+            }
+            
+            const fullMessage = `${wishMessage}\n\n- ${senderName}`;
+            const encodedMessage = encodeURIComponent(fullMessage);
+            const whatsappURL = `https://wa.me/?text=${encodedMessage}`;
+            
+            window.open(whatsappURL, '_blank');
+            showToast('WhatsApp खुल रहा है! 📱');
+            createFloatingEmojis();
+        }
+        
+        // Copy message
+        function copyMessage() {
+            const senderName = document.getElementById('senderName').value.trim();
+            const wishMessage = document.getElementById('wishMessage').value.trim();
+            
+            if (!wishMessage) {
+                showToast('कोई संदेश नहीं है copy करने के लिए! 📝', 'error');
+                return;
+            }
+            
+            const fullMessage = senderName ? `${wishMessage}\n\n- ${senderName}` : wishMessage;
+            
+            navigator.clipboard.writeText(fullMessage).then(() => {
+                showToast('संदेश copy हो गया! 📋');
+            }).catch(() => {
+                showToast('Copy नहीं हो सका! 😞', 'error');
+            });
+        }
+        
+        // Clear all fields
+        function clearAll() {
+            if (confirm('क्या आप सब कुछ clear करना चाहते हैं?')) {
+                document.getElementById('senderName').value = '';
+                document.getElementById('wishMessage').value = '';
+                updateCharCounter();
+                showToast('सब कुछ clear हो गया! 🗑️');
+            }
+        }
+        
+        // Show toast notification
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.style.background = type === 'error' ? '#ff7675' : '#25D366';
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Create floating emojis
+        function createFloatingEmojis() {
+            const emojis = ['🎉', '✨', '💫', '🌟', '💝', '🎊', '🌈', '💖'];
+            const container = document.getElementById('floatingEmojis');
+            
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    const emoji = document.createElement('div');
+                    emoji.className = 'floating-emoji';
+                    emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    emoji.style.left = Math.random() * 100 + '%';
+                    emoji.style.animationDelay = Math.random() * 2 + 's';
+                    container.appendChild(emoji);
+                    
+                    setTimeout(() => {
+                        if (emoji.parentNode) {
+                            emoji.parentNode.removeChild(emoji);
+                        }
+                    }, 6000);
+                }, i * 200);
+            }
+        }
+        
+        // Event listeners
+        document.getElementById('wishMessage').addEventListener('input', updateCharCounter);
+        
+        // Initialize
+        updateCharCounter();
+        
+        // Add some fun interactions
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 'Enter') {
+                sendToWhatsApp();
+            }
+        });
+    </script>
+</body>
+</html>
